@@ -1,15 +1,23 @@
 const express = require("express");
-const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 
+// ==========================
+// Auth Routes
+// ==========================
+const authRoutes = require("./routes/auth.routes");
+
+app.use("/api/auth", authRoutes);
+
+// ==========================
+// Test API
+// ==========================
 app.get("/", (req, res) => {
-    res.json({
+    res.status(200).json({
         success: true,
-        message: "My First Backend is running 🚀"
+        message: "Framwall Backend is running!",
     });
 });
 
